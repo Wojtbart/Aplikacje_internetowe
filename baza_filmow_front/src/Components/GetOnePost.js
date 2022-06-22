@@ -1,8 +1,11 @@
 
-import React, { Component, Fragment } from 'react';
-import { useNavigate, Route, Navigate, Link,useParams, useLocation,Routes } from 'react-router-dom';
+import React, { Component, Fragment,useState } from 'react';
+import {withStyles,Card,CardContent,CardActions,Modal,Button,TextField} from '@material-ui/core';
+
+import { Form, Field } from 'react-final-form';
+import { withRouter } from 'react-router-dom';
+import { useNavigate, Route, Navigate, Link,useParams, useLocation,Routes,useSearchParams } from 'react-router-dom';
 import {
-  withStyles,
   Typography,
   Fab,
   IconButton,
@@ -26,94 +29,64 @@ import StarRating from "../Components/StarRating";
 import ErrorSnackbar from '../Components/ErrorSnackbar';
 
 
-const  GetOnePost= (row) =>(
-        
-      <Fragment>
-        <Typography variant="h4">Wybrany film</Typography>
+const styles = theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalCard: {
+    width: '90%',
+    maxWidth: 500,
+  },
+  modalCardContent: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  marginTop: {
+    marginTop: theme.spacing(2),
+  },
+});
 
-        {!this.row || this.row.length  > 0 ? (
-          <Paper elevation={1}   >
-            <List>
-              {    
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 800 }} aria-label="simple table">
+class GetOnePost extends React.Component {
+// const GetOnePost = ({ location,match }) =>{
+  // constructor
+  // const [product, setProduct] = useState({});
+  // const query = new URLSearchParams(location.search).get('sound');
+  // console.log(location.search);
+  constructor(props) {
+    super(props);
+    console.log("props"+props)
+    console.log("props"+this.props)
+    console.log(props.match)
+    console.log(props.location)
+  }
+// componentDidMount() {
+//   // const { id } = this.props.match.params;
+//   // this.props.fetchPost(id);
+//   // console.log(id);
+  
+// }
 
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Numer filmu</TableCell>
-                        <TableCell align="center">Nazwa</TableCell>
-                        <TableCell align="center">Rok produkcji</TableCell>
-                        <TableCell align="center">Gatunek</TableCell>
-                        <TableCell align="center">Reżyser</TableCell>
-                        <TableCell align="center">Czas trwania w min</TableCell>
-                        <TableCell align="center">Jak oceniany</TableCell>
-                        <TableCell align="center">Od ilu lat</TableCell>
-                        <TableCell align="center">Oceny</TableCell>
-                        {/* <TableCell align="center">Pusto</TableCell> */}
-                      </TableRow>
-                    </TableHead>
+// // render(){
+//   console.log("witam");
+//   // const [searchParams, setSearchParams] = useSearchParams();
+//   // console.log(searchParams,setSearchParams)
+//   // const { posty } = this.props;
+//   const search = this.props;
+// //   const name = new URLSearchParams(search).get('name');
+//   console.log(search)
+  // console.log(id);
+  // console.log(posty);
+  render(){
 
-                    <TableBody style={{ textDecoration: 'none !important' }}>             
-                      {
-                        
-                          <TableRow 
-                            key={row.id} 
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 },'td,th':{textDecoration:'none !important'} }}    
-                          >
-                            <TableCell component="th" scope="row" style={{ textDecoration: 'none !important' }} > { row.id}</TableCell>
-                            <TableCell align="center" button style={{textDecoration: 'underline !important'}}
-                            onClick={() => this.getPost(row)} component={Link} to={`/${row.id}`}>{row.nazwa}</TableCell> 
-                            <TableCell align="center">{row.rok_produkcji}</TableCell>
-                            <TableCell align="center">{row.gatunek}</TableCell>
-                            <TableCell align="center">{row.rezyser}</TableCell>
-                            <TableCell align="center">{row.czas_trwania_w_min}</TableCell>
-                            <TableCell align="center">{row.oceniany}</TableCell>
-                            <TableCell align="center">{row.od_ilu_lat}</TableCell>
-                            <TableCell align="center"><StarRating></StarRating></TableCell>
-                            {/* <IconButton onClick={() => this.deletePost(row)} color="inherit">
-                              <DeleteIcon />
-                            </IconButton> */}
-                          </TableRow>
-                       
-                      }
-                    </TableBody>
+ 
+return(<div>siema</div>);
+}
 
-                  </Table>
-                </TableContainer>
-              }
-              
-            </List>
-          </Paper>
-        ) : (
-          !this.row && <Typography variant="subtitle1">Brak filmow</Typography>
-        )}
+}      
+      
+// }
+  
 
-        <Fab
-          color="secondary"
-          aria-label="add"
-        //   className={classes.fab}
-          onClick={() => this.savePost()}
-          // component={Link}
-          // to="/new"
-        >
-          <AddIcon />
-        </Fab>
-
-        <Routes>
-          <Route exact path="/:id" render={this.renderPostEditor} />
-        </Routes>
-
-        {
-          this.state.error && (
-          <ErrorSnackbar
-            onClose={() => this.setState({ error: null })}
-            message={this.state.error.message}
-          />
-          )
-        }
-        
-      </Fragment>
-    
-  );
-
-  export default  GetOnePost;
+export default  GetOnePost;

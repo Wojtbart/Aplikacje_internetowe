@@ -8,6 +8,8 @@ import AppHeader from './Components/AppHeader';
 import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import PostsManager from './Pages/PostManager';
+import AddPost from './Pages/AddPost';
+import GetOnePost from './Components/GetOnePost';
 
 //mozna usunac index.css App.css oraz logo.svg
 // class App extends Component {
@@ -53,8 +55,12 @@ const App = ({ classes }) => (
     <main className={classes.main}>
     <BrowserRouter>
     <Routes>
-      {/* <Route exact path="/" element={<Home />} /> */}
-      <Route exact path="/" element={<PostsManager/>} />
+
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/addPost" element={<AddPost />} />
+      <Route exact path="/posts/*" element={<PostsManager/>} />
+      <Route exact path="/posts/:id" element={<GetOnePost/>} />
+
     </Routes>
     </BrowserRouter>
     </main>

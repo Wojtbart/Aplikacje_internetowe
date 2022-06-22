@@ -1,18 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { useNavigate, Route, Navigate, Link,useParams, useLocation,Routes } from 'react-router-dom';
-import {
-  withStyles,
-  Typography,
-  Fab,
-  IconButton,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-} from '@material-ui/core';
+import {  Route, Link, Routes,Navigate } from 'react-router-dom';
+import {withStyles, Typography, Fab, IconButton, Paper, List} from '@material-ui/core';
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
-import moment from 'moment';
 import { find, orderBy } from 'lodash';
 import { compose } from 'recompose';
 import Table from '@mui/material/Table';
@@ -21,12 +10,14 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+// import EditIcon from '@mui/icons-material/Edit'
+
 import "../App.css";
 import StarRating from "../Components/StarRating";
-
 import PostEditor from '../Components/PostEditor';
 import ErrorSnackbar from '../Components/ErrorSnackbar';
 import GetOnePost from '../Components/GetOnePost';
+
 
 const styles = theme => ({
   posty: {
@@ -47,7 +38,6 @@ const API = process.env.REACT_APP_API || 'http://localhost:3000';
 
 class PostsManager extends Component {
 
-    
   state = {
     loading: true,
     posty: [],
@@ -79,7 +69,6 @@ class PostsManager extends Component {
   }
 
   async getPosts() {
-    // await this.fetch('get', '/')
     this.setState({ loading: false, posty: (await this.fetch('get', '/')) || [] });
     console.log('jestem w getPosts');
   }
@@ -87,15 +76,20 @@ class PostsManager extends Component {
   async getPost(post) {
     console.log("jestem w get Post");
     
-    
-    await this.fetch('get', `/${post.id}`);
+    console.log("co tam jest"+post.id)
+    let xd= await this.fetch('get', `/${post.id}`);
+    xd.forEach(element => {
+      console.log(element)
+    });
+
+    return <GetOnePost  {...this.props} params={this.props.params} name={post} ></GetOnePost>
+    // <Routes>
+    //       <Route exact path="/posts/:id" render={this.renderPostEditorek(post.id)} />
+    //       {/* <Route exact path="/new" render={this.renderPostEditor} /> */}
+    //     </Routes>
     // return <Navigate  to='/6' />
     // this.getPosts()
-    // this.renderPostEditor(post.id)
-    return <GetOnePost key={post}></GetOnePost>
-
-    //this.setState({ loading: false, posts: (await this.fetch('get', '/')) });
-    
+    // this.renderPostEditorek(post)
   }
 
   savePost = async (posted) => {
@@ -119,122 +113,36 @@ class PostsManager extends Component {
   }
 
 
-  showPost(row) {
-    const { classes } = this.props;
-    console.log(row)
 
-    return (
-      <Fragment>
-        <Typography variant="h4">Wybrany film</Typography>
+  // renderPostEditor = ({ match: { params: { id } } }) => {
+  //   console.log('jestem tu');
 
-        {/* {!this.state.posts.message || this.state.posts.message.length  > 0 ? ( */}
-          <Paper elevation={1} className={classes.posty}  >
-            <List>
-              {    
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 800 }} aria-label="simple table">
+  //   if (this.state.loading) return null;
+  //   const post = find(this.state.posty.message, { id: Number(id) });
 
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Numer filmu</TableCell>
-                        <TableCell align="center">Nazwa</TableCell>
-                        <TableCell align="center">Rok produkcji</TableCell>
-                        <TableCell align="center">Gatunek</TableCell>
-                        <TableCell align="center">Reżyser</TableCell>
-                        <TableCell align="center">Czas trwania w min</TableCell>
-                        <TableCell align="center">Jak oceniany</TableCell>
-                        <TableCell align="center">Od ilu lat</TableCell>
-                        <TableCell align="center">Oceny</TableCell>
-                        {/* <TableCell align="center">Pusto</TableCell> */}
-                      </TableRow>
-                    </TableHead>
+  //   if (!post && id !== 'new') return <Navigate to="/" />;
+  //   return <PostEditor post={post} onSave={this.savePost} />;
+  // };
 
-                    <TableBody style={{ textDecoration: 'none !important' }}>             
-                      {
-                        
-                          <TableRow 
-                            key={row.id} 
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 },'td,th':{textDecoration:'none !important'} }}    
-                          >
-                            <TableCell component="th" scope="row" style={{ textDecoration: 'none !important' }} > { row.id}</TableCell>
-                            {/* <TableCell align="center" button style={{textDecoration: 'underline !important'}}
-                            onClick={() => this.getPost(row)} component={Link} to={`/${row.id}`}>{row.nazwa}</TableCell>  */}
-                            <TableCell align="center">{row.rok_produkcji}</TableCell>
-                            <TableCell align="center">{row.gatunek}</TableCell>
-                            <TableCell align="center">{row.rezyser}</TableCell>
-                            <TableCell align="center">{row.czas_trwania_w_min}</TableCell>
-                            <TableCell align="center">{row.oceniany}</TableCell>
-                            <TableCell align="center">{row.od_ilu_lat}</TableCell>
-                            <TableCell align="center"><StarRating></StarRating></TableCell>
-                            {/* <IconButton onClick={() => this.deletePost(row)} color="inherit">
-                              <DeleteIcon />
-                            </IconButton> */}
-                          </TableRow>
-                       
-                      }
-                    </TableBody>
-
-                  </Table>
-                </TableContainer>
-              }
-              
-            </List>
-          </Paper>
-        {/* ) : (
-          !this.state.loading && <Typography variant="subtitle1">Brak filmow</Typography>
-        )} */}
-
-        <Fab
-          color="secondary"
-          aria-label="add"
-          className={classes.fab}
-          onClick={() => this.savePost()}
-          // component={Link}
-          // to="/new"
-        >
-          <AddIcon />
-        </Fab>
-
-        <Routes>
-          <Route exact path="/:id" render={this.renderPostEditor} />
-        </Routes>
-
-        {/* <Routes>
-          <Route exact path="/:id" render={this.getPost(6)} />
-        </Routes> */}
-
-        {
-          this.state.error && (
-          <ErrorSnackbar
-            onClose={() => this.setState({ error: null })}
-            message={this.state.error.message}
-          />
-          )
-        }
-        
-      </Fragment>
-    );
-  }
-
-  renderPostEditor = ({ match: { params: { id } } }) => {
+  renderPostEditor = () => {
     console.log('jestem tu');
-    if (this.state.loading) return null;
-    const post = find(this.state.posty.message, { id: Number(id) });
 
-    // if (!post && id !== 'new') return <Navigate to="/posts" />;
+    // if (this.state.loading) return null;
+    // const post = find(this.state.posty.message, { id: Number(id) });
 
-    return <PostEditor post={post} onSave={this.savePost} />;
+    // if (!post && id !== 'new') return <Navigate to="/" />;
+    return <PostEditor onSave={this.savePost} />;
   };
 
 
   renderPostEditorek = (post) => {
-    console.log('jestem tu');
+    // console.log('jestem tu');
     // if (this.state.loading) return null;
     // const post = find(this.state.posty.message, { id: Number(id) });
 
     // if (!post && id !== 'new') return <Navigate to="/posts" />;
-
-    return <PostEditor  onSave={this.savePost} />;
+    
+    // return <PostEditor  onSave={this.savePost} />;
   };
 
  
@@ -242,8 +150,9 @@ class PostsManager extends Component {
   render() {
     
     const { classes } = this.props;
-    let message=this.state.posty.message;
-    console.log(message)
+    let messages=this.state.posty.message;
+    console.log("Jestem w render"+messages);
+
     return (
       <Fragment>
         <Typography variant="h4">Lista filmów</Typography>
@@ -266,7 +175,6 @@ class PostsManager extends Component {
                         <TableCell align="center">Jak oceniany</TableCell>
                         <TableCell align="center">Od ilu lat</TableCell>
                         <TableCell align="center">Oceny</TableCell>
-                        {/* <TableCell align="center">Pusto</TableCell> */}
                       </TableRow>
                     </TableHead>
 
@@ -279,8 +187,8 @@ class PostsManager extends Component {
                             
                           >
                             <TableCell component="th" scope="row" style={{ textDecoration: 'none !important' }} > { row.id}</TableCell>
-                            <TableCell align="center" button style={{textDecoration: 'underline !important'}}
-                            onClick={() => this.getPost(row)} component={Link} to={`/${row.id}`}>{row.nazwa}</TableCell> 
+                            <TableCell align="center"  button style={{textDecoration: 'underline !important'}}
+                            onClick={() => this.getPost(row)} component={Link} to={`/posts/${row.id}`}>{row.nazwa}</TableCell> 
                             <TableCell align="center">{row.rok_produkcji}</TableCell>
                             <TableCell align="center">{row.gatunek}</TableCell>
                             <TableCell align="center">{row.rezyser}</TableCell>
@@ -291,6 +199,9 @@ class PostsManager extends Component {
                             <IconButton onClick={() => this.deletePost(row)} color="inherit">
                               <DeleteIcon />
                             </IconButton>
+                            {/* <IconButton color="inherit"> */}
+                              {/* <EditIcon /> */}
+                            {/* </IconButton> */}
                           </TableRow>
                         ))
                       }
@@ -306,29 +217,21 @@ class PostsManager extends Component {
           !this.state.loading && <Typography variant="subtitle1">Brak filmow</Typography>
         )}
 
-        {/* const handleRent = () => {
-        axios.patch('http://localhost:3001/movies', {
-            id: item.id
-        }, {withCredentials: true}).then(response => {
-            onClick(item.id)
-        }).catch(reason => {
-            alert('Sorry, you need to be logged in')
-        })
-    } */}
-
         <Fab
           color="secondary"
           aria-label="add"
           className={classes.fab}
-          onClick={() => this.renderPostEditorek()}
+          // onClick={() => <PostEditor></PostEditor>}
+          // render={this.renderPostEditor}
           component={Link}
-          to="/new"
+          to="/addPost"
         >
           <AddIcon />
         </Fab>
 
         <Routes>
-          <Route exact path="/:id" render={this.renderPostEditor} />
+          <Route exact path="/:id" render={this.renderPostEditorek} />
+          {/* <Route exact path="/new" render={this.renderPostEditor} /> */}
         </Routes>
 
         {
