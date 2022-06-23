@@ -1,10 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import {withStyles,Card,CardContent,CardActions,Modal,Button,TextField} from '@material-ui/core';
-
+import React, { Component} from 'react';
+import {withStyles} from '@material-ui/core';
 import { compose } from 'recompose';
-import { useNavigate } from 'react-router-dom';
-import { Form, Field } from 'react-final-form';
-
 
 import "../App.css";
 
@@ -35,26 +31,9 @@ class AddPost extends Component {
           lastName: ""
         };
     }
-    
-    // state = {
-    //   loading: true,
-    //   posty: [],
-    //   error: null,
-    // };
-  
-    // componentDidMount() {
-    //   this.getPosts();
-    // }
-    // [formData, setFormData] = useReducer(formReducer, {});
-    // [submitting, setSubmitting] = useState(false);
 
     handleSubmit = (event) => {
-        
-        // event.preventDefault();
         console.log(event.target[0].value);
-        console.log(event.target.elements.filmName.value);
-        console.log(event.target.filmName.value);
-        console.log(this.inputNode.value);
 
         let data={
             nazwa :event.target.filmName.value,
@@ -62,10 +41,10 @@ class AddPost extends Component {
             rok_produkcji :event.target.productionYear.value,
             oceniany :event.target.howRated.value,
             czas_trwania_w_min :event.target.durationTime.value,
-            plakat:"brak",
+            plakat:"brak", //tu coś trzeba
             opis:event.target.description.value,
             od_ilu_lat:event.target.howManyYears.value,
-            oceny:"brak",
+            oceny:"brak", //tu coś trzeba
             gatunek: event.target.genre.value
         }
 
@@ -132,8 +111,6 @@ class AddPost extends Component {
           </div>
         );
     }
-
-    
 }
 
 export default compose(withStyles(styles))(AddPost);

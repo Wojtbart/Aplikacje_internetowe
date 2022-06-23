@@ -58,7 +58,7 @@ const App = ({ classes }) => (
 
       <Route exact path="/" element={<Home />} />
       <Route exact path="/addPost" element={<AddPost />} />
-      <Route exact path="/posts/*" element={<PostsManager/>} />
+      <Route exact path="/posts" element={<PostsManager/>} />
       <Route exact path="/posts/:id" element={<GetOnePost/>} />
 
     </Routes>
