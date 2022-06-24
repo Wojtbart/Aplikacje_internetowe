@@ -20,15 +20,15 @@ const AppHeader = ({classes}) => (
 );
 const headersData = [
   {
-    label: "Home",
+    label: "Główna",
     href: "/",
   },
   {
-    label: "Dodaj Post",
+    label: "Dodaj Film",
     href: "/addPost",
   },
   {
-    label: "Posty",
+    label: "Filmy",
     href: "/posts",
   },
 ];

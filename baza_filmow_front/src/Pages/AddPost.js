@@ -48,7 +48,7 @@ class AddPost extends Component {
             gatunek: event.target.genre.value
         }
 
-        fetch('http://localhost:3000/', {
+        fetch('http://localhost:3000/movie', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ class AddPost extends Component {
     render()
     { 
             return(
-            <div class="card">
+            <div class="carde">
             <h1 class="titleForm">Nowy Film</h1>
                 <form onSubmit={this.handleSubmit} class="card-form">
 

@@ -65,6 +65,18 @@ button {
 
 
 .card {
+	margin: 2rem 20%;
+	display: inline-block;
+	flex-direction: column;
+	width: 100%;
+	max-width: 425px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px 0 rgba(#999, .25);
+	padding: .75rem;
+}
+
+.carde {
 	margin: 2rem auto;
 	display: flex;
 	flex-direction: column;
@@ -174,3 +186,44 @@ button {
   color: #6658d3;
   transform: translateY(-1.5rem);
 }
+.commentForm{
+  display:inline-block;
+
+}
+
+.comment {
+  height: 100px;
+  padding: 10px;
+  border: 3px dashed #8ebf42;
+  background-color: #d0e2bc;
+  font: 1.4em/1.6em cursive;
+  color: #095484;
+}
+
+  .commentTh, .commentTd {
+    padding: 5px;
+    text-align: left;
+  }
+  
+  .commentTd:nth-child(1), .commentTh:nth-child(1) { min-width: 200px; }
+  .commentTd:nth-child(2), .commentTh:nth-child(2) { min-width: 200px; }
+
+  .commentThed {
+    background-color: #333;
+    color: #FDFDFD;
+    
+  }
+  .commentThead .commentTr {
+    display: block;
+    position: relative;
+  }
+  .commentTbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: 50px;  
+
+  }
+  .commentTbody  .commentTr:nth-child(even) {
+    background-color: #DDD;
+  }

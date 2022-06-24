@@ -66,7 +66,7 @@ class PostsManager extends Component {
   }
 
   async getPosts() {
-    this.setState({ loading: false, posty: (await this.fetch('get', '/')) || [] });
+    this.setState({ loading: false, posty: (await this.fetch('get', '/movie')) || [] });
   }
 
   async getPost(post) {
@@ -77,7 +77,7 @@ class PostsManager extends Component {
   async deletePost(post) {
     
     if (window.confirm(`Czy na pewo chcesz usunąć film "${post.nazwa}"`)) {
-      await this.fetch('delete', `/${post.id}`);
+      await this.fetch('delete', `/movie/${post.id}`);
       await this.getPosts();
     }
   }
