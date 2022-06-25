@@ -5,22 +5,22 @@ const moviesController=require('../controllers/moviesController.js');
 
 /* GET -> api/v1/movies
 zwraca listę wszystkich filmow. */
-router.get('/', moviesController.getAllMovies);
+router.get('/movie', moviesController.getAllMovies);
 
 /* GET -> api/v1/movies/:movieId
 zwraca konkretny film. */
-router.get('/:movieId', moviesController.getOneMovie);
+router.get('/movie/:movieId', moviesController.getOneMovie);
 
 /* POST -> api/v1/movies/
 dodaje konkretny film. */
-router.post('/', moviesController.addOneMovie);
+router.post('/movie', moviesController.addOneMovie);
 
 /* DELETE -> api/v1/movies/:movieId
 usuwa konkretny film. */
-router.delete('/:movieId', moviesController.deleteOneMovie);
+router.delete('/movie/:movieId', moviesController.deleteOneMovie);
 
 /* UPDATE -> api/v1/movies/:movieId
 aktualizuje konkretny film. */
-router.put('/:movieId', moviesController.updateOneMovie);
+router.put('/movie/:movieId', moviesController.updateOneMovie);
 
 module.exports = router;

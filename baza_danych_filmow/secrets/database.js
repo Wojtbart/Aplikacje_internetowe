@@ -12,10 +12,4 @@ sequelize
     console.error('Unable to connect to the database:', err); // eslint-disable-line no-console
 });
 
-
-// (async () => {
-//     await sequelize.sync({ force: true });
-//     // Code here
-// })();
-
 module.exports={sequelize};

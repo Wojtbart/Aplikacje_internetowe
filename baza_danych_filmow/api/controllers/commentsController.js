@@ -1,9 +1,9 @@
-const movieService=require('../servicelayer/commentService');
+const commentService=require('../servicelayer/commentService');
 
-const  getAllMovies= async(req,res)=>{
+const  getAllComments= async(req,res)=>{
     try{
-        const allMovies= await movieService.getAllMovies();
-        res.status(201).json({status: 'OK', message: allMovies});
+        const allComments= await commentService.getAllComments();
+        res.status(201).json({status: 'OK', message: allComments});
     }
     catch(err){
         res.status(500).send({
@@ -12,23 +12,11 @@ const  getAllMovies= async(req,res)=>{
     } 
 }
 
-const getOneMovie=async (req,res)=>{
 
+const deleteOneComment= async (req,res)=>{
     try{
-        const oneMovie= await movieService.getOneMovie(req.params.movieId);
-        res.status(201).json({status: 'OK', message: oneMovie});
-    }
-    catch(err){
-        res.status(500).send({
-            message: err.message || "Wystąpił bład w trakcie wykonywanie zapytania"
-        });
-    }
-
-}
-const deleteOneMovie= async (req,res)=>{
-    try{
-        const deleteMovie= await movieService.deleteOneMovie(req.params.movieId);
-        res.status(201).json({status: 'OK', message: deleteMovie+"Poprawnie usunięto film"});
+        const deleteComment= await commentService.deleteOneComment(req.params.commentId);
+        res.status(201).json({status: 'OK', message: deleteComment+"Poprawnie usunięto komentasz"});
     }
     catch(err){
         res.status(500).send({
@@ -37,10 +25,10 @@ const deleteOneMovie= async (req,res)=>{
     }
 }
 
-const addOneMovie=async(req,res)=>{
+const addOneComment=async(req,res)=>{
     try{
-        const addMovie= await movieService.addOneMovie(req);
-        res.status(201).json({status: 'OK', message: "Poprawnie dodano film"});
+        const addComment= await commentService.addOneComment(req);
+        res.status(201).json({status: 'OK', message: "Poprawnie dodano komentarz"});
     }
     catch(err){
         res.status(500).send({
@@ -49,15 +37,5 @@ const addOneMovie=async(req,res)=>{
     }
 }
 
-const updateOneMovie=async (req,res)=>{
-    try{
-        const updateMovie= await movieService.updateOneMovie(req);
-        res.status(201).json({status: 'OK', message: "Poprawnie zmodyfikowano film"});
-    }
-    catch(err){
-        res.status(500).send({
-            message: err.message || "Wystąpił bład w trakcie wykonywanie zapytania"
-        });
-    }
-}
-module.exports={getAllMovies,getOneMovie,addOneMovie,deleteOneMovie,updateOneMovie};
+
+module.exports={addOneComment,deleteOneComment,getAllComments};

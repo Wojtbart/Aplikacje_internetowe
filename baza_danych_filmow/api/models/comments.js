@@ -12,7 +12,11 @@ const Comment = sequelize.define('comment', {
   komentarz: {
     type: DataTypes.STRING,
     allowNull: false
-  }
+  },
+  id_filmu: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }, 
 }, {
   tableName: 'opinie',
   timestamps: false

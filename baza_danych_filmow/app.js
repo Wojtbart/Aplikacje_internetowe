@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var dotenv = require('dotenv').config();
 
-//var commentsRouter = require('./api/routes/comments');
+var commentsRouter = require('./api/routes/comments');
 var moviesRouter = require('./api/routes/movies');
 
 // var countryRouter = require('./api/v1/routes/country');
@@ -27,7 +27,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', moviesRouter);
-//app.use('/users', usersRouter);
+app.use('/', commentsRouter);
+
+
 // app.use('/country', countryRouter);
 // app.use('/city', cityRouter);
 

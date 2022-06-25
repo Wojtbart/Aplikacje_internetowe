@@ -8,3 +8,7 @@
 [0m2022.06.20 10:59:02 WARN  Build server is not auto-connectable.[0m
 [0m2022.06.20 10:59:02 WARN  no build tool detected in workspace 'C:\Users\Lenovo\Desktop\e-lerning\studia_na_uj\magisterka\2semestr\projektowanie aplikacji internetowych\projekt'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 [0m2022.06.20 11:00:54 INFO  shutting down Metals[0m
+[0m2022.06.23 21:13:00 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\Lenovo\Desktop\e-lerning\studia_na_uj\magisterka\2semestr\projektowanie aplikacji internetowych\projekt' for client Visual Studio Code 1.54.1.[0m
+[0m2022.06.23 21:13:03 INFO  time: initialize in 3.01s[0m
+[0m2022.06.23 21:13:04 WARN  Build server is not auto-connectable.[0m
+[0m2022.06.23 21:13:04 WARN  no build tool detected in workspace 'C:\Users\Lenovo\Desktop\e-lerning\studia_na_uj\magisterka\2semestr\projektowanie aplikacji internetowych\projekt'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m

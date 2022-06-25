@@ -7,9 +7,9 @@ const commentsController=require('../controllers/commentsController.js');
 zwraca listę wszystkich komentarzy. */
 router.get('/comments', commentsController.getAllComments);
 
-/* GET -> api/v1/comments/:commentId
-zwraca wybrany komentarz. */
-router.get('/comments/:commentId', commentsController.getOneComment);
+/* DELETE-> api/v1/comments/:commentId
+usuwa wybrany komentarz. */
+router.delete('/comments/:commentId', commentsController.deleteOneComment);
 
 /* POST -> api/v1/comments
 dodaje jeden komentarz. */
