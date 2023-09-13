@@ -66,13 +66,11 @@
 
  Struktura bazy danych
 
-![text](images/media/image1.jpeg){width="5.677083333333333in"
-height="5.332638888888889in"}
+![text](images/media/image1.jpeg)
 
 Struktura aplikacji backendowej
 
-![text2](images/media/image2.jpeg){width="6.3in"
-height="4.436805555555556in"}
+![text2](images/media/image2.jpeg)
 
 **5. Implementacja**
 
@@ -92,8 +90,7 @@ Autentykacja z bazą znajduje się w folderze secrets.
 
 Poniżej poszczególne foldery systemu backendowego:
 
-![text3](images/media/image3.jpeg){width="3.873611111111111in"
-height="1.8277777777777777in"}
+![text3](images/media/image3.jpeg)
 
 Frontend:
 
@@ -103,8 +100,7 @@ Została tutaj wykorzystana biblioteka material-ui będąca zestawem
 narzędzi dla interfejsu użytkownika (UI). Został tutaj też wykorzystany
 axios -- klient http dla node.js w celu wysyłania requestów.
 
-![text4](images/media/image4.jpeg){width="3.1666666666666665in"
-height="0.9375in"}
+![text4](images/media/image4.jpeg)
 
 Aplikacja backendowa działa na porcie **3000**, zaś frontowa na porcie
 **3010**.
